@@ -7,10 +7,3 @@ class Solution(object):
                 v+=1
                 if int(i)+int(k) == target:
                     return[j,v]
-        
-                
-
-                
-
-                    
-
