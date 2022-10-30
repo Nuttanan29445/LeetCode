@@ -1,5 +1,5 @@
-class Solution(object):
-    def findMedianSortedArrays(nums1, nums2):
+class Solution:
+    def findMedianSortedArrays(self, nums1: list[int], nums2: list[int]) -> float:
         for i in nums2:
             nums1.append(i)
         z = sorted(nums1)
