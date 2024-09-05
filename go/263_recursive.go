@@ -1,6 +1,6 @@
 package leetcode
 
-func isUgly(n int) bool {
+func isUglyRecursive(n int) bool {
 	for {
 		if n == 0 {
 			return false
