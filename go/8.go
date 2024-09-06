@@ -3,6 +3,7 @@ package leetcode
 import (
 	"math"
 	"strconv"
+	"unicode"
 )
 
 func myAtoi(s string) int {
@@ -57,5 +58,45 @@ func myAtoi(s string) int {
 	} else {
 		return ans
 	}
+}
+
+
+//better solution
+func myAtoi1(s string) int {
+    i := 0
+    n := len(s)
+    
+    // Step 1: Skip leading whitespaces
+    for i < n && unicode.IsSpace(rune(s[i])) {
+        i++
+    }
+    
+    // Step 2: Check for optional sign
+    sign := 1
+    if i < n && (s[i] == '+' || s[i] == '-') {
+        if s[i] == '-' {
+            sign = -1
+        }
+        i++
+    }
+    
+    // Step 3: Convert digits to integer
+    result := 0
+    for i < n && unicode.IsDigit(rune(s[i])) {
+        digit := int(s[i] - '0')
+        
+        // Check for overflow
+        if result > (math.MaxInt32-digit)/10 {
+            if sign == 1 {
+                return math.MaxInt32
+            }
+            return math.MinInt32
+        }
+        
+        result = result*10 + digit
+        i++
+    }
+    
+    return sign * result
 }
 
