@@ -51,3 +51,38 @@ func stringInMap(a string, map1 map[string]int) bool {
     _, ok := map1[a]
     return ok
 }
+
+func isIsomorphic2(s string, t string) bool {
+    if len(s) != len(t) {
+        return false
+    }
+
+    
+    mapS := make(map[byte]byte)
+    mapT := make(map[byte]byte)
+
+    for i := 0; i < len(s); i++ {
+        charS := s[i]
+        charT := t[i]
+
+        
+        if val, ok := mapS[charS]; ok {
+            if val != charT { 
+                return false
+            }
+        } else {
+            mapS[charS] = charT
+        }
+
+        
+        if val, ok := mapT[charT]; ok {
+            if val != charS {
+                return false
+            }
+        } else {
+            mapT[charT] = charS
+        }
+    }
+
+    return true
+}
