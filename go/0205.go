@@ -5,6 +5,7 @@ import (
 	"strconv"
 )
 
+
 func isIsomorphic(s string, t string) bool {
 	temp1 := make(map[string]int)
 	var t1 []string
@@ -24,20 +25,9 @@ func isIsomorphic(s string, t string) bool {
 			temp2[string(t[i])] = i
 			t2 = append(t2, fmt.Sprintf("%v", i))
 		} else {
-			t2 = append(t2, strconv.Itoa(temp2[string(s[i])]))
+			t2 = append(t2, strconv.Itoa(temp2[string(t[i])]))
 		}
 	}
-
-	
-	for index, val := range t {
-		if !stringInMap(string(val), temp2) {
-			temp2[string(val)] = index
-			t2 = append(t2, fmt.Sprintf("%v", index))
-		} else {
-			t2 = append(t2, strconv.Itoa(temp2[string(val)]))
-		}
-	}
-
 	for i := range t1 {
 		if t1[i] != t2[i] {
 			return false
@@ -47,10 +37,8 @@ func isIsomorphic(s string, t string) bool {
 	return true
 }
 
-func stringInMap(a string, map1 map[string]int) bool {
-    _, ok := map1[a]
-    return ok
-}
+
+
 
 func isIsomorphic2(s string, t string) bool {
     if len(s) != len(t) {
@@ -85,4 +73,9 @@ func isIsomorphic2(s string, t string) bool {
     }
 
     return true
+}
+
+func stringInMap(a string, map1 map[string]int) bool {
+    _, ok := map1[a]
+    return ok
 }
