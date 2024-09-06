@@ -13,3 +13,8 @@ func isPowerOfThree(n int) bool {
 	return false
 
 }
+
+func isPowerOfThree1(n int) bool {
+	// The largest power of 3 within the 32-bit signed integer range is 3^19 = 1162261467
+	return n > 0 && 1162261467%n == 0
+}
