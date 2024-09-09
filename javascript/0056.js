@@ -24,3 +24,21 @@ var merge = function (intervals) {
 
   return ans;
 };
+
+var merge2 = function (intervals) {
+  intervals.sort((a, b) => a[0] - b[0]);
+
+  let ans = [intervals[0]];
+
+  intervals.slice(1).forEach((val) => {
+    let lastMerge = ans[ans.length - 1];
+
+    if (val[0] <= lastMerge[1]) {
+      lastMerge[1] = Math.max(lastMerge[1], val[1]);
+    } else {
+      ans.push(val);
+    }
+  });
+
+  return ans;
+};

@@ -21,6 +21,33 @@ func merge(intervals [][]int) [][]int {
 	}
 	return ans
 }
+
+
+func merge2(intervals [][]int) [][]int {
+    if len(intervals) == 0 {
+        return nil
+    }
+
+    sort.Slice(intervals, func(i, j int) bool {
+        return intervals[i][0] < intervals[j][0]
+    })
+
+    var merged [][]int
+    merged = append(merged, intervals[0])
+
+    for i := 1; i < len(intervals); i++ {
+        lastMerged := merged[len(merged)-1]
+
+        if intervals[i][0] <= lastMerged[1] {
+            lastMerged[1] = max(lastMerged[1], intervals[i][1])
+        } else {
+            merged = append(merged, intervals[i])
+        }
+    }
+
+    return merged
+}
+
 func max(a, b int) int {
 	if a > b {
 		return a
